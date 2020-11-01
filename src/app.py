@@ -47,13 +47,13 @@ def load_daily_data(file_path):
             'ELISA tests conducted (IgA)',
             'ELISA tests conducted (IgM)',
             'ELISA tests conducted (IgG)',
-            'ELISA tests conducted (s?)', # Сумарні
-            'ELISA tests conducted (t?)', # Разом (IgA+IgM+IgG+Сумарні)
+            'ELISA tests conducted (Total)',    # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
+            'ELISA tests conducted (Sum)',      # sum of all tests (IgM + IgA + IgG + Total)
             'ELISA tests confirmed (IgA)',
             'ELISA tests confirmed (IgM)',
             'ELISA tests confirmed (IgG)',
-            'ELISA tests confirmed (s?)', # Сумарні
-            'ELISA tests confirmed (t?)', # Разом (IgA+IgM+IgG+Сумарні)
+            'ELISA tests confirmed (Total)',    # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
+            'ELISA tests confirmed (Sum)',      # sum of all tests (IgM + IgA + IgG + Total)
             'ELISA tests confirmed (medics)',
             'ELISA tests confirmed (police)',
             'ELISA Samples leftovers',
@@ -66,13 +66,13 @@ def load_daily_data(file_path):
             '(?) ELISA tests conducted (IgA)',                    # ? 
             '(?) ELISA tests conducted (IgM)',                    # ?
             '(?) ELISA tests conducted (IgG)',                    # ?
-            '(?) ELISA tests conducted (s?)',                     # ?
-            '(?) ELISA tests conducted (t?)',                     # ?
+            '(?) ELISA tests conducted (Total)',                  # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
+            '(?) ELISA tests conducted (Sum)',                    # sum of all tests (IgM + IgA + IgG + Total)
             '(?) ELISA tests confirmed (IgA)',                    # ?
             '(?) ELISA tests confirmed (IgM)',                    # ?
             '(?) ELISA tests confirmed (IgG)',                    # ?
-            '(?) ELISA tests confirmed (s?)',                     # ?
-            '(?) ELISA tests confirmed (t?)',                     # ?
+            '(?) ELISA tests confirmed (Total)',                  # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
+            '(?) ELISA tests confirmed (Sum)',                    # sum of all tests (IgM + IgA + IgG + Total)
             '(?) ELISA tests confirmed (medics)',                 # ?
             '(?) ELISA tests confirmed (police)'                  # ?
         ],

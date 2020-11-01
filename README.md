@@ -40,3 +40,8 @@ Format of data in files changed from time to time (todo: describe formats). Form
 
 - deleted headers
 - changed encoding to `utf-8`
+
+
+## notes
+
+- [Understanding Antibody Testing for COVID-19](https://doi.org/10.1016/j.arth.2020.04.055)
