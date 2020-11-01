@@ -109,7 +109,8 @@ def load_data(datasets_dir):
 def parse_cli_arguments(arguments):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 
-    parser.add_argument('-d', '--data', default = './data/conducted tests/fixed/2020/10', help='Directory with data sets')
+    parser.add_argument('-d', '--data',     default = './data/conducted tests/fixed/2020/10',   help='Directory with data sets')
+    parser.add_argument('-r', '--region',   default = 'Дніпропетровська',                       help='Name of the region to compare with general data')
     
     options = parser.parse_args(arguments)
     
@@ -119,10 +120,11 @@ def parse_cli_arguments(arguments):
 def main(arguments):
     options = parse_cli_arguments(arguments)
 
-    datasets_dir = options.data
+    datasets_dir    = options.data
+    region_name     = options.region
     
     dataframe       = load_data(datasets_dir)
-    dataframe_dp    = dataframe[dataframe.Region.eq('Дніпропетровська')]
+    dataframe_dp    = dataframe[dataframe.Region.eq(region_name)]
     
     dataframe_by_date       = dataframe.groupby(dataframe.index).sum()
     dataframe_db_by_date    = dataframe_dp.groupby(dataframe_dp.index).sum()
@@ -130,7 +132,7 @@ def main(arguments):
     figure, axes = plt.subplots()
     
     axes.plot(dataframe_by_date,    label = 'Total')
-    axes.plot(dataframe_db_by_date, label = 'Dnipropetrovsk region')
+    axes.plot(dataframe_db_by_date, label = f'{region_name} region')
     
     axes.legend(loc='right')
     axes.grid(True)
