@@ -30,63 +30,67 @@ def add_date_column(dataframe, dataset_date):
     return dataframe
 
 def load_daily_data(file_path):
-    dataframe = pd.read_csv(
-        file_path,
-        delimiter   = ';',
-        names       = [
-            'Region',
-            'Laboratory',
-            'PCR tests conducted',
-            'PCR tests conducted of pneumonia patients',
-            'PCR tests of pneumonia patients (confirmed)',
-            'PCR tests confirmed (all)',
-            'PCR tests confirmed (medics)',
-            'PCR tests confirmed (police)',
-            'PCR tests retesting results (all)',        # retesting is done to check if
-            'PCR tests retesting results (confirmed)',  # source about retesting meaning - interview of head of Cented of Public Health https://ua.112.ua/zdorovie/koronavirus-mozhut-diahnostuvaty-patsiientu-z-vazhkym-perebihom-zakhvoriuvannia-popry-nehatyvnyi-test-536397.html
-            'PCR Samples',
-            'PCR Samples leftovers (all)',
-            'PCR Samples leftovers (priority 1)',
-            'PCR Samples leftovers (priority 2)',
-            'PCR Samples leftovers (priority 3)',
-            'ELISA tests conducted (IgA)',
-            'ELISA tests conducted (IgM)',
-            'ELISA tests conducted (IgG)',
-            'ELISA tests conducted (Total)',    # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
-            'ELISA tests conducted (Sum)',      # sum of all tests (IgM + IgA + IgG + Total)
-            'ELISA tests confirmed (IgA)',
-            'ELISA tests confirmed (IgM)',
-            'ELISA tests confirmed (IgG)',
-            'ELISA tests confirmed (Total)',    # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
-            'ELISA tests confirmed (Sum)',      # sum of all tests (IgM + IgA + IgG + Total)
-            'ELISA tests confirmed (medics)',
-            'ELISA tests confirmed (police)',
-            'ELISA Samples leftovers',
-            '(?) PCR tests conducted',                            # ? for the entire period (period - from pandemic start?)
-            '(?) PCR tests conducted of pneumonia patients',      # ?
-            '(?) PCR tests of pneumonia patients (confirmed)',    # ?
-            '(?) PCR tests confirmed (all)',                      # ?
-            '(?) PCR tests confirmed (medics)',                   # ?
-            '(?) PCR tests confirmed (police)',                   # ?
-            '(?) ELISA tests conducted (IgA)',                    # ?
-            '(?) ELISA tests conducted (IgM)',                    # ?
-            '(?) ELISA tests conducted (IgG)',                    # ?
-            '(?) ELISA tests conducted (Total)',                  # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
-            '(?) ELISA tests conducted (Sum)',                    # sum of all tests (IgM + IgA + IgG + Total)
-            '(?) ELISA tests confirmed (IgA)',                    # ?
-            '(?) ELISA tests confirmed (IgM)',                    # ?
-            '(?) ELISA tests confirmed (IgG)',                    # ?
-            '(?) ELISA tests confirmed (Total)',                  # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
-            '(?) ELISA tests confirmed (Sum)',                    # sum of all tests (IgM + IgA + IgG + Total)
-            '(?) ELISA tests confirmed (medics)',                 # ?
-            '(?) ELISA tests confirmed (police)'                  # ?
-        ],
-        usecols     = [
-            'Region',
-            'PCR tests confirmed (all)',
-            'PCR tests conducted'
-        ]
-    )
+    try:
+        dataframe = pd.read_csv(
+            file_path,
+            delimiter   = ';',
+            names       = [
+                'Region',
+                'Laboratory',
+                'PCR tests conducted',
+                'PCR tests conducted of pneumonia patients',
+                'PCR tests of pneumonia patients (confirmed)',
+                'PCR tests confirmed (all)',
+                'PCR tests confirmed (medics)',
+                'PCR tests confirmed (police)',
+                'PCR tests retesting results (all)',        # retesting is done to check if
+                'PCR tests retesting results (confirmed)',  # source about retesting meaning - interview of head of Cented of Public Health https://ua.112.ua/zdorovie/koronavirus-mozhut-diahnostuvaty-patsiientu-z-vazhkym-perebihom-zakhvoriuvannia-popry-nehatyvnyi-test-536397.html
+                'PCR Samples',
+                'PCR Samples leftovers (all)',
+                'PCR Samples leftovers (priority 1)',
+                'PCR Samples leftovers (priority 2)',
+                'PCR Samples leftovers (priority 3)',
+                'ELISA tests conducted (IgA)',
+                'ELISA tests conducted (IgM)',
+                'ELISA tests conducted (IgG)',
+                'ELISA tests conducted (Total)',    # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
+                'ELISA tests conducted (Sum)',      # sum of all tests (IgM + IgA + IgG + Total)
+                'ELISA tests confirmed (IgA)',
+                'ELISA tests confirmed (IgM)',
+                'ELISA tests confirmed (IgG)',
+                'ELISA tests confirmed (Total)',    # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
+                'ELISA tests confirmed (Sum)',      # sum of all tests (IgM + IgA + IgG + Total)
+                'ELISA tests confirmed (medics)',
+                'ELISA tests confirmed (police)',
+                'ELISA Samples leftovers',
+                '(?) PCR tests conducted',                            # ? for the entire period (period - from pandemic start?)
+                '(?) PCR tests conducted of pneumonia patients',      # ?
+                '(?) PCR tests of pneumonia patients (confirmed)',    # ?
+                '(?) PCR tests confirmed (all)',                      # ?
+                '(?) PCR tests confirmed (medics)',                   # ?
+                '(?) PCR tests confirmed (police)',                   # ?
+                '(?) ELISA tests conducted (IgA)',                    # ?
+                '(?) ELISA tests conducted (IgM)',                    # ?
+                '(?) ELISA tests conducted (IgG)',                    # ?
+                '(?) ELISA tests conducted (Total)',                  # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
+                '(?) ELISA tests conducted (Sum)',                    # sum of all tests (IgM + IgA + IgG + Total)
+                '(?) ELISA tests confirmed (IgA)',                    # ?
+                '(?) ELISA tests confirmed (IgM)',                    # ?
+                '(?) ELISA tests confirmed (IgG)',                    # ?
+                '(?) ELISA tests confirmed (Total)',                  # total  antibodies test (including IgM, IgA and IgG) (IgA included?)
+                '(?) ELISA tests confirmed (Sum)',                    # sum of all tests (IgM + IgA + IgG + Total)
+                '(?) ELISA tests confirmed (medics)',                 # ?
+                '(?) ELISA tests confirmed (police)'                  # ?
+            ],
+            usecols     = [
+                'Region',
+                'PCR tests confirmed (all)',
+                'PCR tests conducted'
+            ]
+        )
+    except Exception as ex:
+        print(f"load '{file_path}' file")
+        raise
 
     return dataframe
 
