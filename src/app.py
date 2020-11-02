@@ -19,8 +19,10 @@ def specify_types(dataframe):
     return dataframe
 
 def add_date_column(dataframe, dataset_date):
-    rows_count          = len(dataframe.index)
-    date_column_values  = np.full(rows_count, dataset_date)
+    rows_count  = len(dataframe.index)
+    pandas_date = pd.to_datetime(dataset_date, format = '%d.%m.%y')
+
+    date_column_values  = np.full(rows_count, pandas_date)
 
     dataframe.insert(0, 'Date', date_column_values)
     dataframe.set_index('Date', inplace=True)
@@ -172,8 +174,6 @@ def main(arguments):
     axis.set_ylabel('tests count')
     axis.set_title('PCR tests')
 
-    plt.xticks(rotation = 45)
-    plt.xticks(range(0, len(dataframe_by_date.index)), dataframe_by_date.index)
     #plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
 
     figure.tight_layout()
