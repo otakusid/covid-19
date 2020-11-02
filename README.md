@@ -40,6 +40,10 @@ Format of data in files changed from time to time (todo: describe formats). Form
 
 - deleted headers
 - changed encoding to `utf-8`
+- deleted new lines in rows
+- deleted empty rows
+- deleted row with total calculations in data for `27.10.2020`
+- aligned columns to latest format
 
 
 ## notes

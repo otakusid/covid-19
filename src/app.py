@@ -44,6 +44,7 @@ def load_daily_data(file_path):
             'PCR tests confirmed (police)',
             'PCR tests retesting results (all)',        # retesting is done to check if
             'PCR tests retesting results (confirmed)',  # source about retesting meaning - interview of head of Cented of Public Health https://ua.112.ua/zdorovie/koronavirus-mozhut-diahnostuvaty-patsiientu-z-vazhkym-perebihom-zakhvoriuvannia-popry-nehatyvnyi-test-536397.html
+            'PCR Samples',
             'PCR Samples leftovers (all)',
             'PCR Samples leftovers (priority 1)',
             'PCR Samples leftovers (priority 2)',
