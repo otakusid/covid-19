@@ -8,6 +8,8 @@ import numpy    as np
 import matplotlib.pyplot    as plt
 import matplotlib.dates     as mdates
 
+from dateutil.rrule import MO
+
 
 def specify_types(dataframe):
     dataframe = dataframe.astype({
@@ -133,6 +135,7 @@ def draw_plots(dataframe, color, label, axis):
 
         label       = f'{label} (conducted)',
         color       = color,
+        legend      = False,
         ax          = axis
     )
 
@@ -141,8 +144,56 @@ def draw_plots(dataframe, color, label, axis):
 
         label       = f'{label} (positive)',
         color       = color,
+        legend      = False,
         ax          = axis
     )
+
+    axis.set_ylabel(
+        ylabel  = f"{label} tests count",
+        color   = color
+    )
+    axis.tick_params(
+        axis    = 'y',
+        colors  =   color
+    )
+
+def configure_grid(axis):
+    axis.grid(which='both')
+    axis.grid(which='minor', alpha=0.3)
+
+def configure_xaxis(axis):
+    # minor ticks each day
+    axis.xaxis.set_minor_locator(mdates.DayLocator())
+    # major ticks each Monday
+    axis.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday = MO))
+
+def configure_legend(country_axis, region_axis):
+    handles, labels = [
+        (country + region) for country, region in zip(
+            country_axis.get_legend_handles_labels(),
+            region_axis.get_legend_handles_labels()
+        )
+    ]
+
+    plt.legend(
+        handles,
+        labels,
+        bbox_to_anchor  = (1.15, 1),    #
+        loc             = 'upper left'  # corner of legend box
+    )
+
+def highlight_weekends(axis, dataframe):
+    index = dataframe.index
+
+    for index_position in range(len(index) - 1):
+        if index[index_position].weekday() >= 5:
+            axis.axvspan(
+                dataframe.index[index_position],
+                dataframe.index[index_position + 1],
+                facecolor='green',
+                edgecolor='none',
+                alpha=.3
+            )
 
 
 def main(arguments):
@@ -157,27 +208,32 @@ def main(arguments):
     dataframe_by_date           = dataframe.groupby(dataframe.index).sum()
     dataframe_region_by_date    = dataframe_region.groupby(dataframe_region.index).sum()
 
-    figure, axis = plt.subplots()
+    figure, country_axis = plt.subplots(sharex = True, figsize = (10, 5))
+
+    region_axis = country_axis.twinx()
 
     draw_plots(
         dataframe   = dataframe_by_date,
         color       = 'red',
         label       = 'Total',
-        axis        = axis
+        axis        = country_axis
     )
 
     draw_plots(
         dataframe   = dataframe_region_by_date,
         color       = 'blue',
         label       = region_name,
-        axis        = axis
+        axis        = region_axis
     )
 
-    axis.legend(loc='right')
-    axis.grid(True)
+    configure_grid(country_axis)
+    configure_xaxis(country_axis)
+    configure_legend(country_axis, region_axis)
+    highlight_weekends(country_axis, dataframe_by_date)
 
-    axis.set_ylabel('tests count')
-    axis.set_title('PCR tests')
+    country_axis.set_xlabel('date')
+    country_axis.set_title('PCR tests')
+
 
     #plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
 
