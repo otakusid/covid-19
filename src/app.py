@@ -235,20 +235,30 @@ def main(arguments):
     country_axis.set_title('PCR tests')
 
 
-    #plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
 
+    country_axis.axvline(pd.to_datetime('2020-10-15'), color='green')
+    ymin, ymax = plt.ylim()
+    country_axis.annotate(
+        'test note',
+        xy              = ('2020-10-15', ymin),
+        xytext          = (0, -50),
+        textcoords      = 'offset points',
+        rotation        = 90,
+        #va              = 'bottom',
+        ha              = 'center',
+        #annotation_clip = False,
+        arrowprops      = {
+            'width': 0.1,
+            'headwidth': 0.1,
+            'headlength': 0.1,
+            'shrink':0.05
+        }
+    )
+
+    # adjusts subplot params so that the subplot(s) fits in to the figure area
     figure.tight_layout()
 
     plt.show()
-
-
-
-
-    #print(dataframe)
-    #print(dataframe.head())
-    #print(dataframe.info())
-    #print(dataframe.dtypes)
-    #print(type(dataframe))
 
 
 if __name__ == '__main__':
