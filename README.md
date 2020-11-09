@@ -44,6 +44,7 @@ Format of data in files changed from time to time (todo: describe formats). Form
 - deleted empty rows
 - deleted row with total calculations in data for `27.10.2020`
 - aligned columns to latest format
+- fixed `0-` values for `PCR Samples leftovers (all)` column
 
 
 ## notes
